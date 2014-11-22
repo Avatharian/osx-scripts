@@ -2,6 +2,12 @@
 #Changing Mac OSX Settings
 #############################
 
+Disable Bonjour Broadcasting:
+http://support.apple.com/en-us/HT3789
+There may be unintended consequences....
+
+
+
 
 #############################
 #OSX 10.8
@@ -24,4 +30,7 @@
 #Setting a Desktop Image in Mavericks
 
 Change the default image in /System/Library/CoreServices/DefaultDesktop.jpg
+
+#Setting auth rights
+http://derflounder.wordpress.com/2014/02/16/managing-the-authorization-database-in-os-x-mavericks/
 
