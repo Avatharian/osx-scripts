@@ -2,8 +2,8 @@
 
 ##################################################################
 #
-# Paired with the Postinstallation task "Apply Mac OS X Computer Name" 
-# this task can be used to associate a host name with a mac address across 
+# Paired with the Copy Name and one of the Apply Name scripts
+# this script can be used to associate a host name with a mac address across 
 # installs.  
 #
 # Hostname is saved as mac address in 
