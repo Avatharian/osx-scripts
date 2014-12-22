@@ -14,7 +14,6 @@
 
 
 SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
-MENU=0
 TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
 then
@@ -23,17 +22,25 @@ then
 		then
 			while true; do
 				echo "Computer name is $computername"
-				read -p "Is this Correct? Y/N " answer
+				read -p "Is this correct? Y/N " answer
 				if [[ $answer =~ ^([nN][oO]|[nN])$ ]]
 					then
-						read -p "Enter Desired Name: " name
-						scutil --set ComputerName $name
-						scutil --set HostName $name
-						scutil --set LocalHostName $name
-						newname=$(scutil --get ComputerName)
-						echo "Computer Name is now: $newname"
-						read -n1 -r -p "Press any key to continue..."
-						killall Terminal
+						while true; do
+							read -p "Enter Desired Name: " name
+							read -p "Please reenter to confirm: " name2
+							if [ $name == $name2 ]
+								then
+									scutil --set ComputerName $name
+									scutil --set HostName $name
+									scutil --set LocalHostName $name
+									newname=$(scutil --get ComputerName)
+									echo "Computer Name is now: $newname"
+									read -n1 -r -p "Press any key to continue..."
+									killall Terminal
+							else
+								continue
+							fi
+						done
 				elif [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
 					then
 						scutil --set ComputerName $computername
@@ -43,23 +50,44 @@ then
 						echo "Reading Computer Name: $newname"
 						read -n1 -r -p "Press any key to continue..."
 						killall Terminal
-
 				fi
 			done
+	else
+		echo "Warning! FIXME Name Detected!"
+		echo "Computer Name is $computername"
+		while true; do
+			read -p "Please Enter a proper name: " name
+			read -p "Please reenter to confirm: " name2
+			if [ $name == $name2 ]
+				then
+					scutil --set ComputerName $name
+					scutil --set HostName $name
+					scutil --set LocalHostName $name
+					newname=$(scutil --get ComputerName)
+					echo "Computer Name is now: $newname"
+					read -n1 -r -p "Press any key to continue..."
+					killall Terminal
+			else
+				continue
+			fi
+		done
+	fi
 
 else
 	computername="not Found"
 	echo "Computer name file was $computername"
-	read -p "Do you want to Change? Y/N " answer
-	if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
-	then
-		read -p "Enter Desired Name: " name
-		scutil --set ComputerName $name
-		newname=$(scutil --get ComputerName)
-		echo "Computer Name is now: $newname"
-		read -n1 -r -p "Press any key to continue..."
-		killall Terminal
-	else
-		killall Terminal
-	fi
+	while true; do
+		read -p "Please enter a proper name: " name
+		read -p "Please reenter to confirm: " name2
+		if [ $name == $name2 ]
+			then
+				scutil --set ComputerName $name
+				newname=$(scutil --get ComputerName)
+				echo "Computer Name is now: $newname"
+				read -n1 -r -p "Press any key to continue..."
+				killall Terminal
+		else
+			continue
+		fi
+	done
 fi
