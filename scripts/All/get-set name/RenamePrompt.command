@@ -14,33 +14,42 @@
 
 
 SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
-
+MENU=0
 TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
 then
 	computername=`cat ${TEMP_PATH}`
-	echo "Computer name is going to be $computername"
-	read -p "Is this Correct? Y/N " answer
-	if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
-	then
-		read -p "Enter Desired Name: " name
-		scutil --set ComputerName $name
-		newname=$(scutil --get ComputerName)
-		echo "Computer Name is now: $newname"
-		read -n1 -r -p "Press any key to continue..."
-		killall Terminal
-	else
-		scutil --set ComputerName $computername
-		scutil --set HostName $computername
-		scutil --set LocalHostName $computername
-		newname=$(scutil --get ComputerName)
-		echo "Reading Computer Name: $newname"
-		read -n1 -r -p "Press any key to continue..."
-		killall Terminal
-	fi
+	if [[ $computername !== *"FIXME"* ]]
+		then
+			while true; do
+				echo "Computer name is $computername"
+				read -p "Is this Correct? Y/N " answer
+				if [[ $answer =~ ^([nN][oO]|[nN])$ ]]
+					then
+						read -p "Enter Desired Name: " name
+						scutil --set ComputerName $name
+						scutil --set HostName $name
+						scutil --set LocalHostName $name
+						newname=$(scutil --get ComputerName)
+						echo "Computer Name is now: $newname"
+						read -n1 -r -p "Press any key to continue..."
+						killall Terminal
+				elif [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
+					then
+						scutil --set ComputerName $computername
+						scutil --set HostName $computername
+						scutil --set LocalHostName $computername
+						newname=$(scutil --get ComputerName)
+						echo "Reading Computer Name: $newname"
+						read -n1 -r -p "Press any key to continue..."
+						killall Terminal
+
+				fi
+			done
+
 else
-	computername="Not Found"
-	echo "Computer name field was $computername"
+	computername="not Found"
+	echo "Computer name file was $computername"
 	read -p "Do you want to Change? Y/N " answer
 	if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
 	then
