@@ -1,5 +1,7 @@
 README
 
+I bear no responsibility if you end up like this guy when you view these scripts: http://stream1.gifsoup.com/view5/3019573/indiana-jones-face-melt-o.gif
+
 This set of scripts is meant to be used to keep computer names consistent across
 re-imaging of Macintosh computers. They are meant to be run in the following order:
 
@@ -13,3 +15,5 @@ Q. mac_rename.sh
 That last one is independent of the others, and should be run alone if used. It forgoes copying
 the previous name and instead uses a .txt database of name in a format explained in the script.
 I'll probably just move it into it's own directory since it doesn't belong with the others.
+
+
