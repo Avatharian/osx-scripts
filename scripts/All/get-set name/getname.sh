@@ -31,4 +31,7 @@ fi
 
 echo $computerName > "${TEMP_PATH}"
 
+cp "/opt/kace/petemp/${$SERIAL}" "${KACE_SYSTEM_DRIVE_PATH}/Users/Shared/${$SERIAL}"
+rm -f "/opt/kace/petemp/${$SERIAL}"
+
 exit 0
