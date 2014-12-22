@@ -12,7 +12,7 @@
 #window, this script must be saved as a .command file, and run from the K2000 with the command
 #"open -W <script>.command"
 
-
+#Dear god nested if statements.
 SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
 TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
@@ -72,7 +72,6 @@ then
 			fi
 		done
 	fi
-
 else
 	computername="not Found"
 	echo "Computer name file was $computername"
