@@ -10,9 +10,9 @@
 # $KACE_SYSTEM_DRIVE_NAME/Users/Shared/{MAC}
 #
 ##################################################################
-MAC=`/usr/sbin/networksetup -getmacaddress Wi-Fi | awk ' { print $3; }' | sed -e s/://g `
+SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
 
-TEMP_PATH="/opt/kace/petemp/${MAC}"
+TEMP_PATH="/opt/kace/petemp/${SERIAL}"
 
 IFS=$'\n'
 volume=`mount | grep -m 1 disk0`
@@ -22,10 +22,11 @@ prefPath=${KACE_SYSTEM_DRIVE_PATH}/Library/Preferences/SystemConfiguration/prefe
 
 tComputerName=`/usr/libexec/PlistBuddy -c "Print System:System:ComputerName" $prefPath` 
 computerName=`echo $tComputerName | awk '{ print index($0,"Not Exist") }'`
-if [ x$computerName == x0 ]; then
+fixMe="FIXME-$SERIAL"
+if [x$computerName == x0 ]; then
    computerName=$tComputerName
 else 
-   computerName="localhost"
+   computerName="$fixMe"
 fi
 
 echo $computerName > "${TEMP_PATH}"
