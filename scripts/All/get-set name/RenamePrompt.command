@@ -13,14 +13,14 @@
 #"open -W <script>.command"
 
 
-MAC=`/usr/sbin/networksetup -getmacaddress Wi-Fi | awk ' { print $3; }' | sed -e s/://g `
+SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
 
-TEMP_PATH="/Users/Shared/${MAC}"
+TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
 then
 	computername=`cat ${TEMP_PATH}`
 	echo "Computer name is going to be $computername"
-	read -p "Do you want to Change? Y/N " answer
+	read -p "Is this Correct? Y/N " answer
 	if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
 	then
 		read -p "Enter Desired Name: " name
@@ -40,7 +40,7 @@ then
 	fi
 else
 	computername="Not Found"
-	echo "Computer name fiel was $computername"
+	echo "Computer name field was $computername"
 	read -p "Do you want to Change? Y/N " answer
 	if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
 	then
