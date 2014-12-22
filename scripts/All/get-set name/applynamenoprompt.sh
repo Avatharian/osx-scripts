@@ -6,9 +6,9 @@
 #There is another version of this script that will prompt for response first.
 
 
-MAC=`/usr/sbin/networksetup -getmacaddress Wi-Fi | awk ' { print $3; }' | sed -e s/://g `
+SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
 
-TEMP_PATH="/Users/Shared/${MAC}"
+TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
 then
 	computername=`cat ${TEMP_PATH}`
