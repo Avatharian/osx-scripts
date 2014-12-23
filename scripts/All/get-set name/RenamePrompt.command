@@ -13,6 +13,33 @@
 #"open -W <script>.command"
 
 #Dear god nested if statements.
+
+#######################################################################################
+#Functions
+NameComfirm () {
+while true; do
+	read -p "Enter Desired Name: " name
+	read -p "Please reenter to confirm: " name2
+	if [ $name == $name2 ]
+		then
+			scutil --set ComputerName $name
+			scutil --set HostName $name
+			scutil --set LocalHostName $name
+			newname=$(scutil --get ComputerName)
+			echo "Computer Name is now: $newname"
+			read -n1 -r -p "Press any key to continue..."
+			killall Terminal
+	else
+		continue
+	fi
+done	
+}
+
+#######################################################################################
+
+
+
+
 SERIAL=`/usr/sbin/system_profiler SPHardwareDataType | awk '/Serial/ {print $4}'`
 TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
@@ -25,22 +52,7 @@ then
 				read -p "Is this correct? Y/N " answer
 				if [[ $answer =~ ^([nN][oO]|[nN])$ ]]
 					then
-						while true; do
-							read -p "Enter Desired Name: " name
-							read -p "Please reenter to confirm: " name2
-							if [ $name == $name2 ]
-								then
-									scutil --set ComputerName $name
-									scutil --set HostName $name
-									scutil --set LocalHostName $name
-									newname=$(scutil --get ComputerName)
-									echo "Computer Name is now: $newname"
-									read -n1 -r -p "Press any key to continue..."
-									killall Terminal
-							else
-								continue
-							fi
-						done
+						NameComfirm
 				elif [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]
 					then
 						scutil --set ComputerName $computername
@@ -55,38 +67,10 @@ then
 	else
 		echo "Warning! FIXME Name Detected!"
 		echo "Computer Name is $computername"
-		while true; do
-			read -p "Please Enter a proper name: " name
-			read -p "Please reenter to confirm: " name2
-			if [ $name == $name2 ]
-				then
-					scutil --set ComputerName $name
-					scutil --set HostName $name
-					scutil --set LocalHostName $name
-					newname=$(scutil --get ComputerName)
-					echo "Computer Name is now: $newname"
-					read -n1 -r -p "Press any key to continue..."
-					killall Terminal
-			else
-				continue
-			fi
-		done
+		NameComfirm
 	fi
 else
 	computername="not Found"
 	echo "Computer name file was $computername"
-	while true; do
-		read -p "Please enter a proper name: " name
-		read -p "Please reenter to confirm: " name2
-		if [ $name == $name2 ]
-			then
-				scutil --set ComputerName $name
-				newname=$(scutil --get ComputerName)
-				echo "Computer Name is now: $newname"
-				read -n1 -r -p "Press any key to continue..."
-				killall Terminal
-		else
-			continue
-		fi
-	done
+	NameComfirm
 fi

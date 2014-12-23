@@ -18,4 +18,4 @@ COMPNAME=`cat ./mac_names.txt | grep ${SERIAL} | awk '{ print $3 }' `
 `/usr/sbin/scutil --set LocalHostName ${COMPNAME} `
 `/usr/sbin/scutil --set HostName ${COMPNAME} `
 
-#Hostname can be ${COMPNAME} or ${COMPNAME}.kace.com
+#Hostname can be ${COMPNAME}
