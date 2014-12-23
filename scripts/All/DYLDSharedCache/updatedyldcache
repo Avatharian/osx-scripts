@@ -1,0 +1,2 @@
+#!/bin/sh
+update_dyld_shared_cache -force
