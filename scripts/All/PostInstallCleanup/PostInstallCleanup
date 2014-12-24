@@ -1,2 +1,3 @@
 #!bin/sh
-killall LoginLog
+rm -rf /Library/LoginDaemons/cc.valdez.taskengine.plist
+rm -rf /Library/LoginDaemons/cc.valdez.loginlog.plist
