@@ -7,6 +7,8 @@ LOCALUSER="Enter Local Admin"
 LOCALPASSWORD="Local Admin Passowrd"
 OU="AD OU to place the computer in"
 #
+exec 1>> /tmp/outfile 2>&1
 dsconfigad -force -add $DOMAIN -username $DOMAINUSER -password $DOMAINPASSWORD -localuser $LOCALUSER -localpassword $LOCALPASSWORD -ou $OU -force
+
 dsconfigad -mobile enable -mobileconfirm disable -localhome enable -groups "domain admins,enterprise admins" -useuncpath enable -sharepoint enable
 touch /.kaceMobileBindingDone
