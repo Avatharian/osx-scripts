@@ -7,14 +7,13 @@ cp ./cc.valdez.taskengine.plist "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/c
 chown root "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.taskengine.plist"
 chmod 644 "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.taskengine.plist"
 
-cp ./cc.valdez.LoginLog.plist "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.LoginLog.plist"
-chown root "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.LoginLog.plist"
-chmod 644 "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.LoginLog.plist"
-
-
 cp ./pushbutan.sh "$KACE_SYSTEM_DRIVE_PATH/Library/Scripts/pushbutan.sh"
 chown root "$KACE_SYSTEM_DRIVE_PATH/Library/Scripts/pushbutan.sh"
 chmod 744 "$KACE_SYSTEM_DRIVE_PATH/Library/Scripts/pushbutan.sh"
+
+cp ./cc.valdez.loginlog.plist "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.loginlog.plist"
+chown root "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.loginlog.plist"
+chmod 644 "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.loginlog.plist"
 
 cp -r ./LoginLog.app "$KACE_SYSTEM_DRIVE_PATH/Library/Scripts/LoginLog.app"
 chown -R root "$KACE_SYSTEM_DRIVE_PATH/Library/Scripts/LoginLog.app"
