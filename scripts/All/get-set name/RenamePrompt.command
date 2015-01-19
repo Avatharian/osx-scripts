@@ -45,7 +45,7 @@ TEMP_PATH="/Users/Shared/${SERIAL}"
 if [ -f "${TEMP_PATH}" ] 
 then
 	computername=`cat ${TEMP_PATH}`
-	if [[ $computername !== *"FIXME"* ]]
+	if [[ $computername != *"FIXME"* ]]
 		then
 			while true; do
 				echo "Computer name is $computername"

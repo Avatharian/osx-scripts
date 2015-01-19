@@ -41,8 +41,8 @@ else
    computerName="$fixMe"
 fi
 
-#Echoes the $computerName variable to the local disk, where it will be read post-imaging and applied to the machine.
-echo $computerName > "${KACE_SYSTEM_DRIVE_PATH}/Users/Shared/${SERIAL}"
+#Echoes the $computerName variable to the KACE network share, from which it will be copied to the client machine post-imaging
+echo $computerName > "/opt/kace/petemp/${SERIAL}"
 
 
 exit 0
