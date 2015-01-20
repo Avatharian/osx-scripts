@@ -35,7 +35,7 @@ fixMe="FIXME-$SERIAL"
 #If the $computerName varibale is equal to x0 (in other words, did the previous step set it to Nthing), 
 #that means that a name was in fact found, and the $computerName variable should be set to it.
 #Otherwise, fallback on the FIXME+Serial Number name
-if [x$computerName == x0 ]; then
+if [ x$computerName==x0 ]; then
    computerName=$tComputerName
 else 
    computerName="$fixMe"
