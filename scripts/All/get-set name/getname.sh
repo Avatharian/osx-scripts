@@ -32,11 +32,11 @@ computerName=`echo $tComputerName | awk '{ print index($0,"Not Exist") }'`
 #sets the fixMe variable to concatenate "FIXME-" + the Serial Number of the machine
 fixMe="FIXME-$SERIAL"
 
-#If the $computerName varibale is equal to x0 (in other words, did the previous step set it to Nthing), 
+#If the $computerName varibale is equal to x0 (in other words, did the previous step set it to N0thing), 
 #that means that a name was in fact found, and the $computerName variable should be set to it.
 #Otherwise, fallback on the FIXME+Serial Number name
-if [ x$computerName==x0 ]; then
-   computerName=$tComputerName
+if [ x$computerName == x0 ]; then
+   computerName="$tComputerName"
 else 
    computerName="$fixMe"
 fi
