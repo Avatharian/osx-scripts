@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#This script converts the K2000's dumb loginhook implementation into a proper LaunchD.
+#This script converts the K2000's loginhook implementation into a proper LaunchD.
 
 #Install the launchd and the script which launches the K2000 task engine and the LoginLog.app
 cp ./cc.valdez.taskengine.plist "$KACE_SYSTEM_DRIVE_PATH/Library/LaunchDaemons/cc.valdez.taskengine.plist"
