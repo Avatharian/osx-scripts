@@ -10,7 +10,7 @@
 
 # Note: Script is designed for use with Casper Imaging. --uselist is Parameter
 # $4. File path is Paramter $5. The script kills jamfHelper so you can see the
-# dialog boxes.
+# dialog boxes. 
 
 # DEPENDENCIES: CocoaDialog 3.0 beta https://mstratman.github.io/cocoadialog/
 # Install in /Application/Utilities
@@ -23,6 +23,8 @@
 # Will need to read some other unique identifier from the target machine. Or
 # perhaps not, May just be able to use a known filename for the namefile
 # instead. Target Mode imaging won't overwrite it unlike netbooted machines.
+#
+# Also, change the script parameter setup to be a bit less dumb souding.
 
 
 
